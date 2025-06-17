@@ -1,0 +1,28 @@
+# Vagrant state
+.vagrant/
+**/.vagrant/
+
+# Vagrant-insecure private key (no subir)
+insecure_private_key
+*.pem
+
+# SSH known hosts (si lo sincronizas)
+known_hosts
+
+# Ansible retry files
+**/*.retry
+
+# Logs y archivos temporales
+*.log
+*.tmp
+*~
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

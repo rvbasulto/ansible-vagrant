@@ -6,6 +6,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     c.vm.box = "ubuntu/jammy64"
     c.vm.hostname = "control"
     c.vm.network "private_network", ip: "192.168.56.10"
+    
+    c.vm.synced_folder "./ansible", "/home/vagrant/ansible"
+
     c.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
       vb.cpus   = 1
@@ -17,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # CentOS Clients
   %w[web01 web02 db01].each_with_index do |name, idx|
     config.vm.define name do |node|
-      node.vm.box = "centos/9"
+      node.vm.box = "centos/stream9"
       node.vm.hostname = name
       # IPs 192.168.56.11, .12, .13
       node.vm.network "private_network", ip: "192.168.56.1#{1+idx}"
@@ -31,4 +34,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Prevents accidental NAT and speeds up SSH
   config.ssh.insert_key = false
+  config.ssh.forward_agent = true  
+
 end
