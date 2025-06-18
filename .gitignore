@@ -27,4 +27,5 @@ known_hosts
 .DS_Store
 Thumbs.db
 
+
 ansible/id_vagrant
