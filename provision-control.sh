@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 set -eux
 
-# Solo corre en el nodo "control"
+# Only runs on the "control" node
 if [[ "$(hostname)" != "control" ]]; then
   exit 0
 fi
 
-# Instala Ansible
+# Install Ansible
 sudo apt-get update
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt-get install -y ansible
 
-# Desactiva la verificación de huella y activa el agent forwarding
+# Disable fingerprint verification and enable agent forwarding
 cat <<EOF >> ~/.ssh/config
 Host 192.168.56.*
   StrictHostKeyChecking no
@@ -20,7 +20,7 @@ Host 192.168.56.*
   ForwardAgent yes
 EOF
 
-# Crea tu inventario
+# Create your inventory
 mkdir -p /home/vagrant/ansible
 cat <<EOF > /home/vagrant/ansible/hosts.ini
 [web]

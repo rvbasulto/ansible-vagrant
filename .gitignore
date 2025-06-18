@@ -26,3 +26,5 @@ known_hosts
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+ansible/id_vagrant
