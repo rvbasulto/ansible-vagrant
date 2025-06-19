@@ -18,19 +18,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # CentOS Clients
-  %w[web01 web02 db01].each_with_index do |name, idx|
-    config.vm.define name do |node|
-      node.vm.box = "centos/stream9"
-      node.vm.hostname = name
-      # IPs 192.168.56.11, .12, .13
-      node.vm.network "private_network", ip: "192.168.56.1#{1+idx}"
-      node.vm.provider "virtualbox" do |vb|
-        vb.memory = 512
-        vb.cpus   = 1
-      end
-      # No provision: it will remain "fresh", Ansible will configure it later
+%w[web01 web02 web03 db01].each_with_index do |name, idx|
+  config.vm.define name do |node|
+    node.vm.box = "centos/stream9"
+    node.vm.hostname = name
+    # IPs 192.168.56.11, .12, .13, .14
+    node.vm.network "private_network", ip: "192.168.56.1#{1+idx}"
+    node.vm.provider "virtualbox" do |vb|
+      vb.memory = 512
+      vb.cpus   = 1
     end
+    # No provision: it will remain "fresh", Ansible will configure it later
   end
+end
 
   # Prevents accidental NAT and speeds up SSH
   config.ssh.insert_key = false
