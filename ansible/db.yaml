@@ -2,7 +2,17 @@
 - name: DBserver setup
   hosts: dbservers
   become: yes
+#  vars:
+#    dbname: electric
+#    dbuser: current
+#    dbpass: tesla
   tasks:
+    - debug:
+        msg: " The dbname is {{dbname}}"
+
+    - debug:
+        var: dbuser
+
     - name: Install mariadb-server
       ansible.builtin.yum:
         name: mariadb-server
@@ -19,16 +29,22 @@
         state: started
         enabled: yes 
 
-    - name: Create a new database with name 'accounts'
+    - name: Create a new database 
       community.mysql.mysql_db:
-        name: accounts
+        name: "{{dbname}}"
         state: present
         login_unix_socket: /var/lib/mysql/mysql.sock
 
-    - name: Create database user with name 'vprofile'
+    - name: Create database 
       community.mysql.mysql_user:
-        name: vprofile
-        password: 'admin943'
+        name: "{{dbuser}}"
+        password: "{{dbpass}}"
         priv: '*.*:ALL'
         state: present
         login_unix_socket: /var/lib/mysql/mysql.sock
+        column_case_sensitive: false
+      register: dbout
+
+    - name: print dbout variable
+      debug:
+        var: dbout

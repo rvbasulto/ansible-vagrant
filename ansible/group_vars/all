@@ -1,0 +1,6 @@
+dbname: sky
+dbuser: pilot
+dbpass: aircraft
+USRNM: webgroup
+COMM: variable from group_vars/all file
+
