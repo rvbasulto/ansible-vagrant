@@ -1,3 +1,5 @@
+---
+# vars file for post-install
 dbname: sky
 dbuser: pilot
 dbpass: aircraft
@@ -10,3 +12,4 @@ usernames:
 - user13
 - user14
 
+mydir: /opt/dir22

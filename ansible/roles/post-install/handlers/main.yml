@@ -1,0 +1,17 @@
+---
+# handlers file for post-install
+  
+- name: Restart Chrony on Redhat
+  service:
+    name: chronyd
+    state: restarted
+    enabled: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Restart NTP on Debian
+  service:
+      name: ntp
+      state: restarted
+      enabled: yes
+  when: ansible_os_family == "Debian"
+
