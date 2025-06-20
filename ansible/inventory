@@ -4,14 +4,17 @@ all:
       ansible_host: 192.168.56.11
     web02:
       ansible_host: 192.168.56.12
+    web03:
+      ansible_host: 192.168.56.13  
     db01:
-      ansible_host: 192.168.56.13 
+      ansible_host: 192.168.56.14 
 
   children:
     webservers:
       hosts:
         web01:
         web02:
+        web03:
     dbservers:
       hosts:
         db01:

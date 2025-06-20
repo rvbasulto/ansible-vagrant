@@ -4,3 +4,9 @@ dbpass: aircraft
 USRNM: webgroup
 COMM: variable from group_vars/all file
 
+usernames:
+- user11
+- user12
+- user13
+- user14
+
